@@ -257,7 +257,9 @@ jobs:
         with:
           name: distribution-package-artifacts
           path: dist
-      - run: ${{ env.CALL_TARGET }} ${TARGET}
+      - run: |
+          echo "github.ref: ${{ github.ref }}"
+          ${{ env.CALL_TARGET }} ${TARGET}
 
 
   publish-release-dryrun:
@@ -287,7 +289,9 @@ jobs:
         with:
           name: distribution-package-artifacts
           path: dist
-      - run: ${{ env.CALL_TARGET }} ${TARGET}
+      - run: |
+          echo "github.ref: ${{ github.ref }}"
+          ${{ env.CALL_TARGET }} ${TARGET}
 
 
   publish-nonrelease-packages:
@@ -315,4 +319,7 @@ jobs:
         with:
           name: distribution-package-artifacts
           path: dist
-      - run: ls dist/
+      - run: |
+          # debug logging
+          echo "github.ref: ${{ github.ref }}"
+          ls dist/
